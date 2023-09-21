@@ -17,17 +17,17 @@ def vuln_Start():
 
     term_host = tk.Frame(vuln_frame)
     term_host.grid(row=0, rowspan=len(vuln_tools) + 1, column=1, sticky='nsew')
-    termf = tk.Frame(term_host, height=400, width=500)
+    termf = tk.Frame(term_host, height=1024, width=760)
     termf.pack(fill=tk.BOTH, expand=tk.YES)
     wid = termf.winfo_id()
     
     # Run command in the newly opened xterm
     if vuln_variables['Smuggler'].get() == 1:
         script_path_smuggler = os.path.join(script_directory, 'tools', 'smuggler', 'smuggler.py')
-        command = f'python3 {script_path_smuggler} -u {fqd}'
-        os.system(f'xterm -into {wid} -geometry 80x25 -sb -e "{command}" &')
+        command = f'python3 {script_path_smuggler} -u {fqd} && bash'
+        os.system(f'xterm -into {wid} -geometry 600x480 -sb -e "{command}" &')
     else:
-        os.system(f'xterm -into {wid} -geometry 80x25 -sb &')
+        os.system(f'xterm -into {wid} -geometry 600x480 -sb -e "bash" &')
 
 def add_fqd():
     new_fqd = simpledialog.askstring("Input", "Enter new FQD:")
